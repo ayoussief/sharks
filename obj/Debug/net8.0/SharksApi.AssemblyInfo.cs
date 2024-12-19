@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SharksApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a970e46b421de8687a3bc01e8812fa6fd0ea28fd")]
 [assembly: System.Reflection.AssemblyProductAttribute("SharksApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SharksApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

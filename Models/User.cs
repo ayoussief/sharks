@@ -8,7 +8,7 @@ namespace SharksApi.Models
         public Guid Id { get; set; } // Unique identifier
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Username { get; set; } // Added username
+        public string Username { get; set; }
         public string Email { get; set; }
         public List<string> Followers { get; set; }
         public List<string> Follows { get; set; }
@@ -16,6 +16,7 @@ namespace SharksApi.Models
         public List<string> SubscribedTo { get; set; }
         public List<Notification> Notifications { get; set; }
         public List<string> Messages { get; set; }
+        public List<string> Comments { get; set; } // Added comments
         public decimal Balance { get; set; }
         public string ProfilePic { get; set; }
         public string PhoneNumber { get; set; }
@@ -26,9 +27,12 @@ namespace SharksApi.Models
         public List<string> Tasks { get; set; }
         public List<string> Rewards { get; set; }
         public List<string> Referrals { get; set; }
-        public List<Post> Posts { get; set; } // Added posts
-        public string StreamKey { get; set; } // Added stream key for live streaming
-        public bool IsLive { get; set; } // Added live status
+        public List<Post> Posts { get; set; }
+        public string StreamKey { get; set; }
+        public bool IsLive { get; set; }
+        public string Role { get; set; } // Added role (e.g., Admin, User, etc.)
+        public bool VipStatus { get; set; } // Added VIP status
+        public string Plan { get; set; } // Added plan (e.g., Basic, Pro, Premium)
 
         // Constructor
         public User(
@@ -36,6 +40,9 @@ namespace SharksApi.Models
             string lastName,
             string username,
             string email,
+            string role = "User",
+            bool vipStatus = false,
+            string plan = "Basic",
             decimal balance = 0.0m,
             string profilePic = "",
             string phoneNumber = "",
@@ -48,6 +55,9 @@ namespace SharksApi.Models
             LastName = lastName;
             Username = username;
             Email = email;
+            Role = role;
+            VipStatus = vipStatus;
+            Plan = plan;
             Balance = balance;
             ProfilePic = profilePic;
             PhoneNumber = phoneNumber;
@@ -62,6 +72,7 @@ namespace SharksApi.Models
             SubscribedTo = new List<string>();
             Notifications = new List<Notification>();
             Messages = new List<string>();
+            Comments = new List<string>(); // Initialize comments list
             Transactions = new List<string>();
             Stocks = new List<string>();
             Tasks = new List<string>();
@@ -70,7 +81,27 @@ namespace SharksApi.Models
             Posts = new List<Post>();
         }
 
+
+
         // Functions
+
+        // Upgrade to VIP
+        public void UpgradeToVip()
+        {
+            VipStatus = true;
+        }
+
+        // Downgrade from VIP
+        public void DowngradeFromVip()
+        {
+            VipStatus = false;
+        }
+
+        // Change user plan
+        public void ChangePlan(string newPlan)
+        {
+            Plan = newPlan;
+        }
 
         // Add a follower
         public void AddFollower(string followerId)
@@ -189,6 +220,12 @@ namespace SharksApi.Models
         public void AddPost(string content, string title)
         {
             Posts.Add(new Post(title, content));
+        }
+
+        // Add a comment
+        public void AddComment(string comment)
+        {
+            Comments.Add(comment);
         }
 
         // Go live
